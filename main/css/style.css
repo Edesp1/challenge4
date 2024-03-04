@@ -38,6 +38,7 @@ body {
     cursor: pointer;
     margin: 20px;
     font-size: 150%;
+    border-radius: 10px;
 }
 
 #start:hover {
@@ -45,3 +46,8 @@ body {
     color: wheat;
     transition: .3s;
 }
+
+.hide {
+    display: none;
+}
+
