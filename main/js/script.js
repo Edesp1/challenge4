@@ -84,13 +84,15 @@ function quizEnd() { //ends quiz
 
     clearInterval(timerId);
   
-    var endScreenEl = document.getElementById('end-screen');
+    var endScreenEl = document.getElementById('end');
     endScreenEl.removeAttribute('class');
   
     var finalScoreEl = document.getElementById('final-score');
     finalScoreEl.textContent = time;
   
     questionsEl.setAttribute('class', 'hide'); //hides questions
+
+    usernameEl.style.display = "inline";
 }
 
 function clockTick() { //updates time
@@ -103,6 +105,36 @@ function clockTick() { //updates time
     }
 }
 
+function saveScore() {
+  var username = usernameEl.value.trim();
+
+  if(username !== "") {
+    var scores = JSON.parse(window.localStorage.getItem("scores")) || []; 
+
+    var newScore = {
+      score: time,
+      username: username,
+    };
+
+    scores.push(newScore); 
+    window.localStorage.setItem("scores", JSON.stringify(scores)); 
+
+    window.location.href = "highscore.html"; 
+  }
+}
+
+function checkForEnter(event) {
+  if(event.key == "Enter") {
+    saveScore();
+  }
+}
+
+document.getElementById('back-button').onclick = function() {
+  window.history.back();
+};
+
 startBtn.onclick = startQuiz;
 
 choicesEl.onclick = questionClick;
+
+submitBtn.onclick = saveScore;
