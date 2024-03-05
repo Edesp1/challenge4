@@ -1,4 +1,4 @@
-var questions = [
+var questions = [ //questions from main folder copied onto here
     {
       title: 'Commonly used data types DO NOT include:',
       choices: ['strings', 'booleans', 'alerts', 'numbers'],

@@ -1,11 +1,11 @@
-function printHighscores() {
-    var scores = JSON.parse(window.localStorage.getItem("scores")) || [];
+function printHighscores() { //prints highscores
+    var scores = JSON.parse(window.localStorage.getItem("scores")) || []; //retrieves scores from local storage
 
     scores.sort(function (firstScore, secondScore) {
         return firstScore.username.localeCompare(secondScore.username);
     });
     
-    for (var i = 0; i < scores.length; i++) {
+    for (var i = 0; i < scores.length; i++) { //loops to make new highscore entry
         var liTag = document.createElement('li');
         liTag.textContent = scores[i].username + ' - ' + scores[i].score;
 
@@ -14,11 +14,11 @@ function printHighscores() {
     }
 }
 
-function clearHighscores() {
+function clearHighscores() { //clears highscores
     window.localStorage.removeItem('scores');
-    window.location.reload();
+    window.location.reload(); //once cleared it refreshes page
 }
 
-document.getElementById('clear').onclick = clearHighscores;
+document.getElementById('clear').onclick = clearHighscores; //when clickes it clears highscores
 
-printHighscores();
+printHighscores();//prints highscores
